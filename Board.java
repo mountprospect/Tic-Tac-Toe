@@ -3,6 +3,7 @@ import java.util.*;
 /**
  * 
  * @author Maalv date: 5-8-19 at 6:32 pm
+ * Edited on 5-9-19 at 5:34 pm
  */
 
 public class Board {
@@ -14,10 +15,6 @@ public class Board {
 								 { "2", "-", "-", "-" },
 								 { "3", "-", "-", "-" } };
 	private int turn = 1;
-//	public Board(String playerOneName, String playerTwoName) {
-//		this.playerOne = playerOneName;
-//		this.playerTwo = playerTwoName;
-//	}
 
 	public String[][] editBoardPlayerOne(int indexOne, int indexTwo) {
 		if (board[indexOne][indexTwo].equals("-")) {
@@ -86,7 +83,30 @@ public class Board {
 				return val;
 		}
 	}
-
+	
+	public boolean checkBoard() {
+		if (board[1][1].equals(board[1][2]) && board[1][1].equals(board[1][3]) && !(board[1][1].equals("-"))) return true;
+		else if (board[2][1].equals(board[2][2]) && board[2][1].equals(board[2][3])&& !(board[2][1].equals("-"))) return true;
+		else if (board[3][1].equals(board[3][2]) && board[3][1].equals(board[3][3])&& !(board[3][1].equals("-"))) return true;
+		else if (board[1][1].equals(board[2][1]) && board[1][1].equals(board[3][1])&& !(board[1][1].equals("-"))) return true;
+		else if (board[1][2].equals(board[2][2]) && board[1][2].equals(board[3][2])&& !(board[1][2].equals("-"))) return true;
+		else if (board[1][3].equals(board[2][3]) && board[1][3].equals(board[3][3])&& !(board[1][3].equals("-"))) return true;
+		else if (board[1][1].equals(board[2][2]) && board[1][1].equals(board[3][3])&& !(board[1][1].equals("-"))) return true;
+		else if (board[1][3].equals(board[2][2]) && board[1][3].equals(board[3][1])&& !(board[1][3].equals("-"))) return true;
+		else return false;	
+	}
+	
+	public void reset() {
+		turn = 1;
+		for (int i = 1; i <= 3; i++) {
+			for (int j = 1; j <= 3; j++) {
+				board[i][j] = "-";
+			}
+		}
+		System.out.println("Game Reset");
+		for (int k = 0; k < 10; k++) System.out.println();
+		printBoard();
+	}
 	public String setPlayerOneName(String name) {
 		playerOne = name;
 		return playerOne;
